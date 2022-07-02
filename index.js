@@ -16,11 +16,14 @@ const helloWorld = (ctx) => {
 router.get('/', helloWorld);
 //
 router.get('/data', async (ctx, next) => {
+  ctx.response.status = 200;
+  ctx.set('Content-Type', 'application/json');
   ctx.response.body = { status: 'Успех' };
 });
 //
 router.get('/error', async (ctx, next) => {
   ctx.response.status = 500;
+  ctx.set('Content-Type', 'application/json');
   ctx.response.body = { status: '500 - ошибка данных' };
 });
 //
@@ -30,7 +33,8 @@ router.get('/loading', async (ctx, next) => {
       resolve();
     }, 5000);
   });
-  ctx.response.body = { status: 'Загрузка данных' };
+  ctx.set('Content-Type', 'application/json');
+  ctx.response.body = { status: 'Данные загружены' };
 });
 
 app.use(router.routes());
