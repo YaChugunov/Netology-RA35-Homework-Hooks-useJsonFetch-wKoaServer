@@ -3,10 +3,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const path = require('node:path');
 
-const outputDirectory = 'public';
+const outputDirectory = 'dist';
 
 module.exports = {
   entry: ['babel-polyfill', './app/index.js'],
+  // entry: './app/index.js',
   output: {
     path: path.join(__dirname, outputDirectory),
     filename: 'bundle.js',
@@ -40,7 +41,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
-      template: './app/index.html',
+      template: './public/index.html',
     }),
   ],
 };
