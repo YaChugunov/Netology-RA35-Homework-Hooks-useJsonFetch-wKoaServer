@@ -16,12 +16,12 @@ const helloWorld = (ctx) => {
 router.get('/', helloWorld);
 //
 router.get('/data', async (ctx, next) => {
-  ctx.response.body = { status: 'ok' };
+  ctx.response.body = { status: 'Успех' };
 });
 //
 router.get('/error', async (ctx, next) => {
   ctx.response.status = 500;
-  ctx.response.body = { status: 'Internal Error' };
+  ctx.response.body = { status: '500 - ошибка данных' };
 });
 //
 router.get('/loading', async (ctx, next) => {
@@ -30,7 +30,7 @@ router.get('/loading', async (ctx, next) => {
       resolve();
     }, 5000);
   });
-  ctx.response.body = { status: 'ok' };
+  ctx.response.body = { status: 'Загрузка данных' };
 });
 
 app.use(router.routes());
