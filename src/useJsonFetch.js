@@ -20,6 +20,7 @@ export default function useJsonFetch(url, opts) {
         setLoading(false);
       }
     };
+    console.log(url);
     fetchData();
   }, [url]);
   return [data, isLoading, hasError];
