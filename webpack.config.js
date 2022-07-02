@@ -1,43 +1,29 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-
-const path = require('node:path');
-
-const outputDirectory = 'dist';
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: __dirname + '/app/index.html',
+  filename: 'index.html',
+  inject: 'body',
+});
 
 module.exports = {
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: __dirname + '/app/App.js',
   output: {
-    path: path.join(__dirname, outputDirectory),
+    path: __dirname + '/public',
     filename: 'bundle.js',
   },
+  plugins: [HTMLWebpackPluginConfig],
+  devServer: {
+    inline: true,
+    contentBase: './public',
+    port: 3333,
+  },
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000',
+        loader: 'babel',
       },
     ],
   },
-  devServer: {
-    port: 8080,
-    open: true,
-  },
-  plugins: [
-    new CleanWebpackPlugin([outputDirectory]),
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-  ],
 };

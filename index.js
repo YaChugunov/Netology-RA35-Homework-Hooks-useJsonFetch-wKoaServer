@@ -36,6 +36,6 @@ router.get('/loading', async (ctx, next) => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3333;
 const server = http.createServer(app.callback());
 server.listen(port);
