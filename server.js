@@ -16,14 +16,14 @@ const srvOk = (ctx) => {
 router.get('/', srvOk);
 //
 router.get('/data', async (ctx, next) => {
-  ctx.response.status = 200;
-  ctx.set('Content-Type', 'application/json');
+  ctx.status = 200;
+  ctx.type = 'Content-Type; application/json';
   ctx.body = { status: '200', data: 'Ok' };
 });
 //
 router.get('/error', async (ctx, next) => {
-  ctx.response.status = 500;
-  ctx.set('Content-Type', 'application/json');
+  ctx.status = 500;
+  ctx.type = 'Content-Type; application/json';
   ctx.body = { status: '500', data: 'Error' };
 });
 //
@@ -33,7 +33,7 @@ router.get('/loading', async (ctx, next) => {
       resolve();
     }, 5000);
   });
-  ctx.set('Content-Type', 'application/json');
+  ctx.type = 'Content-Type; application/json';
   ctx.body = { status: '---', data: 'Loading' };
 });
 
@@ -42,4 +42,4 @@ app.use(router.allowedMethods());
 
 const port = process.env.PORT || 3000;
 const server = http.createServer(app.callback());
-server.listen(port);
+server.listen(port, 'localhost');
