@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-export default function useJsonFetch(url, opts) {
+export default function useJsonFetch(url) {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [hasError, setError] = useState(null);
@@ -8,27 +8,26 @@ export default function useJsonFetch(url, opts) {
   useEffect(() => {
     setLoading(true);
     console.error('url', url);
-    fetch(url, opts)
+    const headers = { 'Content-Type': 'application/json' };
+    // GET request using fetch with error handling
+    fetch(url, { headers })
       .then(async (response) => {
-        const isJson = response.headers
-          .get('content-type')
-          ?.includes('application/json');
-        const data = isJson && (await response.json());
+        const data = await response.json();
 
         // check for error response
         if (!response.ok) {
-          // get error message from body or default to response status
-          const error = (data && data.message) || response.status;
+          // get error message from body or default to response statusText
+          const error = data || response.statusText;
           return Promise.reject(error);
         }
-        setData(data);
+        console.log('data', data);
+        setData({ data });
       })
       .catch((error) => {
-        setError(error.toString());
+        setError({ error });
         console.error('There was an error!', error);
       });
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
     setLoading(false);
-  }, [url, opts]);
-  return [data, isLoading, hasError];
+    return [data, isLoading, hasError];
+  }, [url]);
 }
