@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export const useJsonFetch = ({ url, init, processData }) => {
+export const useJsonFetch = (url, init, processData) => {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [hasError, setError] = useState(null);
@@ -11,10 +11,14 @@ export const useJsonFetch = ({ url, init, processData }) => {
     JSON.stringify(init),
   ];
 
+  console.log('useJsonFetch', url);
+  console.log('stringifiedUrl', stringifiedUrl);
+
   // If no processing function is passed just return the data
   // The callback hook ensures that the function is only created once
   // and hence the effect hook below doesn't start an infinite loop
   const processJson = useCallback(processData || ((jsonBody) => jsonBody), []);
+  console.log('processJson', processJson);
 
   useEffect(() => {
     const fetchProcess = async () => {
@@ -26,8 +30,10 @@ export const useJsonFetch = ({ url, init, processData }) => {
           // Extract json
           const rawData = await response.json();
           const processedData = processJson(rawData);
+          console.log('processedData', processedData);
           setData(processedData);
         } else {
+          console.log('response', response);
           console.error(`Error ${response.status} ${response.statusText}`);
         }
       } catch (error) {
