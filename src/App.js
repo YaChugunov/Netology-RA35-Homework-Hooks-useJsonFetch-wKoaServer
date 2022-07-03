@@ -7,7 +7,7 @@ function AppHook1({ url }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
-      <h1>1</h1>
+      <h2>{url}</h2>
       <h3>{data && data.status}</h3>
       <h3>{isLoading && 'Is Loading1'}</h3>
       <h3>{hasError && 'Has Error1'}</h3>
@@ -18,7 +18,7 @@ function AppHook2({ url }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
-      <h1>2</h1>
+      <h2>{url}</h2>
       <h3>{data && data.status}</h3>
       <h3>{isLoading && 'Is Loading2'}</h3>
       <h3>{hasError && 'Has Error2'}</h3>
@@ -29,7 +29,7 @@ function AppHook3({ url }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
-      <h1>3</h1>
+      <h2>{url}</h2>
       <h3>{data && data.status}</h3>
       <h3>{isLoading && 'Is Loading3'}</h3>
       <h3>{hasError && 'Has Error3'}</h3>
