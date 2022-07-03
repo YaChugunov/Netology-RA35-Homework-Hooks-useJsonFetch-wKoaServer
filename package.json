@@ -33,20 +33,16 @@
     "react-scripts": "^3.1.0"
   },
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "npm run build && node index.js",
+    "start": "rimraf ./build && react-scripts start",
+    "build": "react-scripts build",
+    "start2": "npm run build && node server.js",
+    "build2": "webpack --mode production",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start2": "rimraf ./build && react-scripts start",
-    "build2": "react-scripts build"
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
