@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import useJsonFetch from './useJsonFetch';
+import { useJsonFetch } from './useJsonFetch';
 
 function AppHook1({ url }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
