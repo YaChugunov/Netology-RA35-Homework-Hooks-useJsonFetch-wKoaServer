@@ -8,29 +8,17 @@ export default function useJsonFetch(url, opts) {
   let timestampRef = useRef();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const timestamp = Date.now();
-      timestampRef.current = timestamp;
-      setLoading(true);
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(response.statusText);
-        // if (timestampRef.current === timestamp) {
-        const res = await response.json();
-        console.log(res);
-        let res1 = JSON.parse(res);
-        //setData(JSON.parse(res));
-        setData(res1);
-        // }
-        setError(null);
-      } catch (e) {
-        console.log(url, e);
-        setError(e);
-      } finally {
-        setLoading(false);
-      }
+    // POST request using fetch inside useEffect React hook
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'React Hooks POST Request Example' }),
     };
-    fetchData();
+    fetch(url, requestOptions)
+      .then((response) => response.json())
+      .then((data) => setData(data));
+
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, [url]);
   return [data, isLoading, hasError];
 }
