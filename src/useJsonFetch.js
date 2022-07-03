@@ -7,6 +7,7 @@ export default function useJsonFetch(url, opts) {
 
   useEffect(() => {
     setLoading(true);
+    console.error('url', url);
     fetch(url, opts)
       .then(async (response) => {
         const isJson = response.headers
@@ -28,6 +29,6 @@ export default function useJsonFetch(url, opts) {
       });
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
     setLoading(false);
-  }, [url]);
+  }, [url, opts]);
   return [data, isLoading, hasError];
 }
