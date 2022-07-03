@@ -10,21 +10,21 @@ app.use(koaBody());
 
 const router = new Router();
 //
-const helloWorld = (ctx) => {
+const srvOk = (ctx) => {
   ctx.body = 'Сервер запущен';
 };
-router.get('/', helloWorld);
+router.get('/', srvOk);
 //
 router.get('/data', async (ctx, next) => {
   ctx.response.status = 200;
   ctx.set('Content-Type', 'application/json');
-  ctx.body = { status: '200 - успешное получение данных' };
+  ctx.body = { status: '200', data: 'Ok' };
 });
 //
 router.get('/error', async (ctx, next) => {
   ctx.response.status = 500;
   ctx.set('Content-Type', 'application/json');
-  ctx.body = { status: '500 - ошибка получения данных' };
+  ctx.body = { status: '500', data: 'Error' };
 });
 //
 router.get('/loading', async (ctx, next) => {
@@ -34,7 +34,7 @@ router.get('/loading', async (ctx, next) => {
     }, 5000);
   });
   ctx.set('Content-Type', 'application/json');
-  ctx.body = { status: 'Идет загрузка данных' };
+  ctx.body = { status: '---', data: 'Loading' };
 });
 
 app.use(router.routes());

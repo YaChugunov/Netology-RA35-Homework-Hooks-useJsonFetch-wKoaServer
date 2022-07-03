@@ -26,6 +26,7 @@ export const useJsonFetch = ({ url, init, processData }) => {
           // Extract json
           const rawData = await response.json();
           const processedData = processJson(rawData);
+          console.log(processedData);
           setData(processedData);
         } else {
           console.error(`Error ${response.status} ${response.statusText}`);
