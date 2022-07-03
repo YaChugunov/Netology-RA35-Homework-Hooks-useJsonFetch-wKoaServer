@@ -6,8 +6,7 @@ const path = require('node:path');
 const outputDirectory = 'dist';
 
 module.exports = {
-  entry: ['babel-polyfill', './app/index.js'],
-  // entry: './app/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: path.join(__dirname, outputDirectory),
     filename: 'bundle.js',
@@ -32,10 +31,10 @@ module.exports = {
     ],
   },
   devServer: {
-    port: 3333,
+    port: 3000,
     open: true,
     proxy: {
-      '/api': 'http://localhost:3333',
+      '/api': 'http://localhost:3000',
     },
   },
   plugins: [
