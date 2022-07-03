@@ -22,7 +22,7 @@ router.get('/data', async (ctx, next) => {
 router.get('/error', async (ctx, next) => {
   ctx.response.status = 500;
   ctx.setHeader('Content-Type', 'application/json');
-  ctx.end(JSON.stringify({ status: '500 - ошибка получения данных' }));
+  ctx.response.body = { status: '500 - ошибка получения данных' };
 });
 //
 router.get('/loading', async (ctx, next) => {
@@ -31,7 +31,7 @@ router.get('/loading', async (ctx, next) => {
       resolve();
     }, 5000);
   });
-  ctx.set('Content-Type', 'application/json');
+  ctx.setHeader('Content-Type', 'application/json');
   ctx.response.body = { status: 'Данные загружаются' };
 });
 

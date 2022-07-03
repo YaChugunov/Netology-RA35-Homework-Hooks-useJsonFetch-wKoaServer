@@ -8,20 +8,16 @@ export default function useJsonFetch(url, opts) {
   let timestampRef = useRef();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProcess = async () => {
       const timestamp = Date.now();
       timestampRef.current = timestamp;
       setLoading(true);
       try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(response.statusText);
-        // if (timestampRef.current === timestamp) {
-        const res = await response.json();
-        console.log(res);
-        let res1 = JSON.parse(res);
-        //setData(JSON.parse(res));
-        setData(res1);
-        // }
+        const data = await response.json();
+        console.log('response', data);
+        setData(data);
         setError(null);
       } catch (e) {
         console.log(url, e);
@@ -30,7 +26,8 @@ export default function useJsonFetch(url, opts) {
         setLoading(false);
       }
     };
-    fetchData();
+    fetchProcess();
+    console.log();
   }, [url]);
   return [data, isLoading, hasError];
 }
