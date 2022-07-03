@@ -17,12 +17,14 @@ router.get('/', helloWorld);
 //
 router.get('/data', async (ctx, next) => {
   ctx.response.status = 200;
+  ctx.set('Content-Type', 'application/json');
+  ctx.body = { status: '200 - успешное получение данных' };
 });
 //
 router.get('/error', async (ctx, next) => {
   ctx.response.status = 500;
-  ctx.setHeader('Content-Type', 'application/json');
-  ctx.response.body = { status: '500 - ошибка получения данных' };
+  ctx.set('Content-Type', 'application/json');
+  ctx.body = { status: '500 - ошибка получения данных' };
 });
 //
 router.get('/loading', async (ctx, next) => {
@@ -31,8 +33,8 @@ router.get('/loading', async (ctx, next) => {
       resolve();
     }, 5000);
   });
-  ctx.setHeader('Content-Type', 'application/json');
-  ctx.response.body = { status: 'Данные загружаются' };
+  ctx.set('Content-Type', 'application/json');
+  ctx.body = { status: 'Идет загрузка данных' };
 });
 
 app.use(router.routes());
