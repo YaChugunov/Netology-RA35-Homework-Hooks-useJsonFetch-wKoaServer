@@ -4,7 +4,14 @@ import './App.css';
 import useJsonFetch from './useJsonFetch';
 
 function AppHook1({ url }) {
-  const [data, isLoading, hasError] = useJsonFetch(url);
+  console.log('AppHook1', url);
+  // POST request using fetch inside useEffect React hook
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: 'React Hooks POST Request Example' }),
+  };
+  const [data, isLoading, hasError] = useJsonFetch(url, requestOptions);
   return (
     <div className="App">
       <h2>{url}</h2>
@@ -15,7 +22,13 @@ function AppHook1({ url }) {
   );
 }
 function AppHook2({ url }) {
-  const [data, isLoading, hasError] = useJsonFetch(url);
+  console.log('AppHook2', url);
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: 'React Hooks POST Request Example' }),
+  };
+  const [data, isLoading, hasError] = useJsonFetch(url, requestOptions);
   return (
     <div className="App">
       <h2>{url}</h2>
@@ -26,7 +39,13 @@ function AppHook2({ url }) {
   );
 }
 function AppHook3({ url }) {
-  const [data, isLoading, hasError] = useJsonFetch(url);
+  console.log('AppHook3', url);
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: 'React Hooks POST Request Example' }),
+  };
+  const [data, isLoading, hasError] = useJsonFetch(url, requestOptions);
   return (
     <div className="App">
       <h2>{url}</h2>
