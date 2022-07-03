@@ -6,7 +6,7 @@ const path = require('node:path');
 const outputDirectory = 'dist';
 
 module.exports = {
-  entry: ['babel-polyfill', './app/index.js'],
+  entry: ['babel-polyfill', './src/index.js'],
   // entry: './app/index.js',
   output: {
     path: path.join(__dirname, outputDirectory),

@@ -18,7 +18,7 @@
     "style-loader": "^0.23.0",
     "url-loader": "^1.0.1",
     "webpack": "4.39.1",
-    "webpack-cli": "^3.0.8",
+    "webpack-cli": "3.0.8",
     "webpack-dev-server": "3.2.1"
   },
   "dependencies": {
@@ -34,19 +34,15 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node index.js",
+    "start": "npm run build && node server.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon index.js",
+    "server": "nodemon server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start2": "rimraf ./build && react-scripts start",
     "build2": "react-scripts build"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
