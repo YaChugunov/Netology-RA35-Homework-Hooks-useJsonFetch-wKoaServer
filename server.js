@@ -32,7 +32,7 @@ router.get('/loading', async (ctx, next) => {
     }, 8000);
   });
   ctx.type = 'Content-Type; application/json';
-  ctx.body = { message: 'https://i.gifer.com/74H8.gif' };
+  ctx.body = { message: './public/loading.gif' };
 });
 
 app.use(router.routes());
