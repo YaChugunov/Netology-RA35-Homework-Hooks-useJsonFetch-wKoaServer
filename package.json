@@ -36,15 +36,11 @@
     "build": "webpack --mode production",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon server.js",
-    "app": "npm run build && react-scripts start",
+    "app": "react-scripts start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
