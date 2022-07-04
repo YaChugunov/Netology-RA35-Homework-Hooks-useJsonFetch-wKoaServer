@@ -14,11 +14,12 @@ export const useJsonFetch = (url, initialData) => {
           throw new Error(response.statusText);
         }
         const data = await response.json();
+        console.log(url, data);
         setData(data);
         setError(null);
-      } catch (e) {
-        console.error(e);
-        setError(e);
+      } catch (error) {
+        console.log(url, error);
+        setError(error);
       } finally {
         setLoading(false);
       }

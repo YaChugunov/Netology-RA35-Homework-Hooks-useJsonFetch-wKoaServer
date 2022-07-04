@@ -10,28 +10,34 @@ app.use(koaBody());
 
 const router = new Router();
 
-const requestListener = (req, res) => {
-  console.log('Request is Incoming');
-
-  const responseData = {
-    message: 'Hello!',
-    articleData: {
-      articleName: 'How to send JSON response from NodeJS',
-      category: 'NodeJS',
-      status: 'published',
-    },
-    endingMessage: 'Visit Geeksforgeeks.org for more',
-  };
-
-  const jsonContent = JSON.stringify(responseData);
-  res.end(jsonContent);
-};
+router.get('/', async (ctx, next) => {
+  ctx.body = 'Server is running';
+});
+//
+router.get('/data', async (ctx, next) => {
+  ctx.type = 'Content-Type; application/json';
+  ctx.body = { message: 'Ok' };
+});
+//
+router.get('/error', async (ctx, next) => {
+  ctx.type = 'Content-Type; application/json';
+  ctx.status = 500;
+  ctx.body = { message: 'Internal Error' };
+});
+//
+router.get('/loading', async (ctx, next) => {
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 8000);
+  });
+  ctx.type = 'Content-Type; application/json';
+  ctx.body = { message: 'https://i.gifer.com/74H8.gif' };
+});
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-const server = http.createServer(requestListener);
-
-server.listen(3000, 'localhost', function () {
-  console.log('Server is Listening at Port 3000!');
-});
+const port = process.env.PORT || 7070;
+const server = http.createServer(app.callback());
+server.listen(port, 'localhost');

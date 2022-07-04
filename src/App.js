@@ -3,37 +3,39 @@ import './App.css';
 
 import { useJsonFetch } from './useJsonFetch';
 
-function AppHook1({ url }) {
-  console.log(`AppHook1 url ${url}`);
+function FetchData({ url }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
-      <h2>{url}</h2>
-      <h3>{data && data.status}</h3>
-      <h3>{isLoading && 'Is Loading1'}</h3>
-      <h3>{hasError && 'Has Error1'}</h3>
+      <h2>Use hook to fetch data url</h2>
+      <h3>{url}</h3>
+      <h3>{data && data.message}</h3>
+      <h3 className="isLoading">{isLoading && 'Is Loading'}</h3>
+      <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>
   );
 }
-function AppHook2({ url }) {
+function FetchError({ url }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
-      <h2>{url}</h2>
-      <h3>{data && data.status}</h3>
-      <h3>{isLoading && 'Is Loading2'}</h3>
-      <h3>{hasError && 'Has Error2'}</h3>
+      <h2>Use hook to fetch error url</h2>
+      <h3>{url}</h3>
+      <h3>{data && data.message}</h3>
+      <h3 className="isLoading">{isLoading && 'Is Loading'}</h3>
+      <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>
   );
 }
-function AppHook3({ url }) {
+function FetchLoading({ url }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
-      <h2>{url}</h2>
-      <h3>{data && data.status}</h3>
-      <h3>{isLoading && 'Is Loading3'}</h3>
-      <h3>{hasError && 'Has Error3'}</h3>
+      <h2>Use hook to fetch loading url</h2>
+      <h3>{url}</h3>
+      <h3>{data && data.message}</h3>
+      <h3 className="isLoading">{isLoading && 'Is Loading'}</h3>
+      <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>
   );
 }
@@ -41,7 +43,11 @@ function AppHook3({ url }) {
 export default function App() {
   return (
     <div>
-      <AppHook1 url={process.env.REACT_APP_TEST_URL} />
+      <FetchData url={process.env.REACT_APP_DATA_URL} />
+      <hr />
+      <FetchError url={process.env.REACT_APP_ERROR_URL} />
+      <hr />
+      <FetchLoading url={process.env.REACT_APP_LOADING_URL} />
     </div>
   );
 }

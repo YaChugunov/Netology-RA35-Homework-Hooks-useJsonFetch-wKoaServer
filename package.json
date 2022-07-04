@@ -33,7 +33,6 @@
     "react-scripts": "^3.1.0"
   },
   "scripts": {
-    "build:app": "react-scripts build",
     "start:srv": "npm run build && node server.js",
     "build": "webpack --mode production",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
