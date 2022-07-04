@@ -5,7 +5,7 @@ export const useJsonFetch = (url, initialData) => {
   const [isLoading, setLoading] = useState(false);
   const [hasError, setError] = useState(null);
   useEffect(() => {
-    console.log(`useEffect url ${url}`);
+    // console.log(`useEffect url ${url}`);
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -14,11 +14,11 @@ export const useJsonFetch = (url, initialData) => {
           throw new Error(response.statusText);
         }
         const data = await response.json();
-        console.log(url, data);
+        // console.log(url, data);
         setData(data);
         setError(null);
       } catch (error) {
-        console.log(url, error);
+        // console.log(url, error);
         setError(error);
       } finally {
         setLoading(false);

@@ -9,7 +9,7 @@ function FetchData({ url }) {
     <div className="App">
       <h2>Use hook to fetch data url</h2>
       <h3>{url}</h3>
-      <h3>{data && data.message}</h3>
+      <h3 className="dataOk">{data && data.message}</h3>
       <h3 className="isLoading">{isLoading && 'Is Loading'}</h3>
       <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>
@@ -21,7 +21,7 @@ function FetchError({ url }) {
     <div className="App">
       <h2>Use hook to fetch error url</h2>
       <h3>{url}</h3>
-      <h3>{data && data.message}</h3>
+      <h3 className="dataOk">{data && data.message}</h3>
       <h3 className="isLoading">{isLoading && 'Is Loading'}</h3>
       <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>
@@ -33,7 +33,7 @@ function FetchLoading({ url, img }) {
     <div className="App">
       <h2>Use hook to fetch loading url</h2>
       <h3>{url}</h3>
-      <h3>{data && data.message}</h3>
+      <h3 className="dataOk">{data && data.message}</h3>
       <h3 className="isLoading">{isLoading ? <img src={img} /> : ''}</h3>
       <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>

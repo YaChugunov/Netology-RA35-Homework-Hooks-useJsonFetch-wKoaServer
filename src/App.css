@@ -38,6 +38,9 @@
 .hasError {
   color: red;
 }
+.dataOk {
+  color: green;
+}
 
 .App img {
   width: 100px;

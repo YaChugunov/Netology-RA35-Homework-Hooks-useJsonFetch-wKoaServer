@@ -37,7 +37,7 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon server.js",
     "app": "react-scripts start",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run app\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "browserslist": {
     "production": [
