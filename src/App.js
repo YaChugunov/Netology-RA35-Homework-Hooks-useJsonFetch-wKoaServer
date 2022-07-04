@@ -27,13 +27,13 @@ function FetchError({ url }) {
     </div>
   );
 }
-function FetchLoading({ url }) {
+function FetchLoading({ url, img }) {
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
       <h2>Use hook to fetch loading url</h2>
       <h3>{url}</h3>
-      <h3>{data ? <img src={data.img} /> : ''}</h3>
+      <h3>{data ? <img src={img} /> : ''}</h3>
       <h3 className="isLoading">{isLoading && 'Is Loading'}</h3>
       <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>
@@ -47,7 +47,10 @@ export default function App() {
       <hr />
       <FetchError url={process.env.REACT_APP_ERROR_URL} />
       <hr />
-      <FetchLoading url={process.env.REACT_APP_LOADING_URL} />
+      <FetchLoading
+        url={process.env.REACT_APP_LOADING_URL}
+        img={process.env.REACT_APP_IMG_URL}
+      />
     </div>
   );
 }
