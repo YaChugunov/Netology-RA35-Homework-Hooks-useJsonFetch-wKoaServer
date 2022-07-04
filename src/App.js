@@ -33,7 +33,7 @@ function FetchLoading({ url }) {
     <div className="App">
       <h2>Use hook to fetch loading url</h2>
       <h3>{url}</h3>
-      <h3>{data ? <img src={data.message} /> : ''}</h3>
+      <h3>{data ? <img src={data.img} /> : ''}</h3>
       <h3 className="isLoading">{isLoading && 'Is Loading'}</h3>
       <h3 className="hasError">{hasError && 'Has Error'}</h3>
     </div>
