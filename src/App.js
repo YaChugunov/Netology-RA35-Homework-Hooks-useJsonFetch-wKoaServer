@@ -4,6 +4,7 @@ import './App.css';
 import { useJsonFetch } from './useJsonFetch';
 
 function AppHook1({ url }) {
+  console.log(`AppHook1 url ${url}`);
   const [data, isLoading, hasError] = useJsonFetch(url);
   return (
     <div className="App">
@@ -40,12 +41,7 @@ function AppHook3({ url }) {
 export default function App() {
   return (
     <div>
-      <AppHook1 url={process.env.REACT_APP_DATA_URL} />
-      <hr />
-      <AppHook2 url={process.env.REACT_APP_ERROR_URL} />
-      <hr />
-      <AppHook3 url={process.env.REACT_APP_LOADING_URL} />
-      <hr />
+      <AppHook1 url={process.env.REACT_APP_TEST_URL} />
     </div>
   );
 }

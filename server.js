@@ -9,37 +9,29 @@ app.use(cors());
 app.use(koaBody());
 
 const router = new Router();
-//
-const srvOk = (ctx) => {
-  ctx.body = 'Сервер запущен';
+
+const requestListener = (req, res) => {
+  console.log('Request is Incoming');
+
+  const responseData = {
+    message: 'Hello!',
+    articleData: {
+      articleName: 'How to send JSON response from NodeJS',
+      category: 'NodeJS',
+      status: 'published',
+    },
+    endingMessage: 'Visit Geeksforgeeks.org for more',
+  };
+
+  const jsonContent = JSON.stringify(responseData);
+  res.end(jsonContent);
 };
-router.get('/', srvOk);
-//
-router.get('/data', async (ctx, next) => {
-  ctx.status = 200;
-  ctx.type = 'Content-Type; application/json';
-  ctx.body = { status: '200', data: 'Ok' };
-});
-//
-router.get('/error', async (ctx, next) => {
-  ctx.status = 500;
-  ctx.type = 'Content-Type; application/json';
-  ctx.body = { status: '500', data: 'Error' };
-});
-//
-router.get('/loading', async (ctx, next) => {
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 5000);
-  });
-  ctx.type = 'Content-Type; application/json';
-  ctx.body = { status: '---', data: 'Loading' };
-});
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-const port = process.env.PORT || 3000;
-const server = http.createServer(app.callback());
-server.listen(port, 'localhost');
+const server = http.createServer(requestListener);
+
+server.listen(3000, 'localhost', function () {
+  console.log('Server is Listening at Port 3000!');
+});
