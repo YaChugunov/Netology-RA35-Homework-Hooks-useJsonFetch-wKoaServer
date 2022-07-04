@@ -38,3 +38,7 @@
 .hasError {
   color: red;
 }
+
+.App img {
+  width: 100px;
+}
